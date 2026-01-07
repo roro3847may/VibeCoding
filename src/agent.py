@@ -10,20 +10,27 @@ if sys.platform == "win32":
 def get_sys():
     try:
         b = psutil.sensors_battery()
-        return f"Battery: {b.percent}% ({'Charging' if b.power_plugged else 'Discharging'})"
+        p = f"{b.percent}%" if b else "N/A"
+        s = "Charging" if b and b.power_plugged else "Discharging"
+        return f"Battery: {p} ({s})"
     except: return "Status N/A"
 
 def monitor(log_path, stop_event):
-    last_pos = os.path.getsize(log_path) if os.path.exists(log_path) else 0
+    if not os.path.exists(log_path):
+        with open(log_path, "w", encoding="utf-8") as f: f.write("--- Log Started ---\n")
+    
+    last_pos = os.path.getsize(log_path)
+    
     while not stop_event.is_set():
         if os.path.exists(log_path):
             curr_size = os.path.getsize(log_path)
             if curr_size > last_pos:
-                with open(log_path, "r", encoding="utf-8") as f:
+                with open(log_path, "r", encoding="utf-8", errors="ignore") as f:
                     f.seek(last_pos)
                     text = f.read().strip()
                     if text:
-                        sys.stdout.write(f"\n{text}\n[User]> ")
+                        # Clear existing line and print Bottle's message
+                        sys.stdout.write(f"\r{text}\n[User]> ")
                         sys.stdout.flush()
                     last_pos = curr_size
         time.sleep(0.1)
@@ -31,7 +38,7 @@ def monitor(log_path, stop_event):
 def main():
     path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding"
     os.chdir(path)
-    # Turn off monitor
+    # Strong screen off
     os.system("powershell -Command \"(Add-Type '[DllImport(\\\"user32.dll\\\")]public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -PassThru)::SendMessage(-1, 0x0112, 0xF170, 2)\"")
     
     cmd_f = "commands.txt"

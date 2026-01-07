@@ -1,2 +1,1 @@
-[Bottle]: k
-[Bottle]: roro 님, 이제 진짜 실시간으로 들립니다! 침대에서 편하게 명령을 내려주세요.
+[Bottle]: Listening for roro's command...
