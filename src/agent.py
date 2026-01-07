@@ -35,7 +35,7 @@ def monitor_logs(log_path, stop_event):
                         sys.stdout.write(f"\n[Bottle]: {new_content.strip()}\n[User]> ")
                         sys.stdout.flush()
                     last_log_pos = current_size
-        time.sleep(0.5)
+        time.sleep(0.2)
 
 def main():
     vibe_path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding"
