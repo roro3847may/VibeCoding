@@ -1,1 +1,1 @@
-[Bottle]: Real-time ultra-fast monitoring started. Lolo, go to your phone and send a command. I will react within 1 second.
+[Bottle]: roro, I found the error in the screen-off command and fixed it. I am now monitoring your messages in real-time. Please try vchat again. The screen should turn off this time.

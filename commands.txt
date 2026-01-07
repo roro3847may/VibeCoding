@@ -38,3 +38,55 @@
 [01:16:53] 지금 네가 실시간으로 보고있다면
 [01:16:57] 아니구나......ㅠ
 [01:18:21] 아.. 왜 안될까
+[01:19:34] 들리니
+[01:19:46] 안보이네... 노트북도 안꺼지네
+[01:24:02] Microsoft Windows [Version 10.0.26200.7462]
+[01:24:02] (c) Microsoft Corporation. All rights reserved.
+[01:24:02] ?? Vibe Coding environment loaded!
+[01:24:02] Type 'vhelp' for available commands.
+[01:24:02] Add-Type : c:\Users\manse\AppData\Local\Temp\dmlhwgtl\dmlhwgtl.0.cs(1) : 'DllImport
+[01:24:02] ' 형 식  또 는  네 임 스 페 이 스  이 름 을  찾 을  수  없 습 니 다 . using 지 시 문  또 는  어 셈 블 리  참 조 가  있 는 지  확 인 하 십 시 오 .
+[01:24:02] c:\Users\manse\AppData\Local\Temp\dmlhwgtl\dmlhwgtl.0.cs(1) : >>> [DllImport("user3
+[01:24:02] 2.dll")] public class Monitor { [DllImport("user32.dll")] public static extern int
+[01:24:02] SendMessage(int hWnd, int hMsg, int wParam, int lParam); public static void Off() {
+[01:24:02] SendMessage(-1, 0x0112, 0xF170, 2); } }
+[01:24:02] At line:1 char:1
+[01:24:02] + Add-Type -TypeDefinition '[DllImport("user32.dll")] public class Moni ...
+[01:24:02] + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[01:24:02] + CategoryInfo          : InvalidData: (Microsoft.Power...peCompilerError:AddT
+[01:24:02] ypeCompilerError) [Add-Type], Exception
+[01:24:02] + FullyQualifiedErrorId : SOURCE_CODE_ERROR,Microsoft.PowerShell.Commands.AddT
+[01:24:02] ypeCommand
+[01:24:02] Add-Type : c:\Users\manse\AppData\Local\Temp\dmlhwgtl\dmlhwgtl.0.cs(1) : 'DllImport
+[01:24:02] Attribute' 형 식  또 는  네 임 스 페 이 스  이 름 을  찾 을  수  없 습 니 다 . using 지 시 문  또 는  어 셈 블  리  참 조 가  있 는 지  확 인 하 십 시 오 .
+[01:24:02] c:\Users\manse\AppData\Local\Temp\dmlhwgtl\dmlhwgtl.0.cs(1) : >>> [DllImport("user3
+[01:24:02] 2.dll")] public class Monitor { [DllImport("user32.dll")] public static extern int
+[01:24:02] SendMessage(int hWnd, int hMsg, int wParam, int lParam); public static void Off() {
+[01:24:02] SendMessage(-1, 0x0112, 0xF170, 2); } }
+[01:24:02] At line:1 char:1
+[01:24:02] + Add-Type -TypeDefinition '[DllImport("user32.dll")] public class Moni ...
+[01:24:02] + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[01:24:02] + CategoryInfo          : InvalidData: (Microsoft.Power...peCompilerError:AddT
+[01:24:02] ypeCompilerError) [Add-Type], Exception
+[01:24:02] + FullyQualifiedErrorId : SOURCE_CODE_ERROR,Microsoft.PowerShell.Commands.AddT     ypeCommand
+[01:24:02] Add-Type : c:\Users\manse\AppData\Local\Temp\dmlhwgtl\dmlhwgtl.0.cs(1) : 'DllImport
+[01:24:02] ' 형 식  또 는  네 임 스 페 이 스  이 름 을  찾 을  수  없 습 니 다 . using 지 시 문  또 는  어 셈 블 리  참 조 가  있 는 지  확 인 하 십 시 오 .
+[01:24:02] c:\Users\manse\AppData\Local\Temp\dmlhwgtl\dmlhwgtl.0.cs(1) : >>> [DllImport("user3 2.dll")] public class Monitor { [DllImport("user32.dll")] public static extern int  SendMessage(int hWnd, int hMsg, int wParam, int lParam); public static void Off() {  SendMessage(-1, 0x0112, 0xF170, 2); } }
+[01:24:02] At line:1 char:1
+[01:24:02] + Add-Type -TypeDefinition '[DllImport("user32.dll")] public class Moni ...
+[01:24:02] + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[01:24:02] + CategoryInfo          : InvalidData: (Microsoft.Power...peCompilerError:AddT     ypeCompilerError) [Add-Type], Exception
+[01:24:02] + FullyQualifiedErrorId : SOURCE_CODE_ERROR,Microsoft.PowerShell.Commands.AddT     ypeCommand
+[01:24:02] Add-Type : c:\Users\manse\AppData\Local\Temp\dmlhwgtl\dmlhwgtl.0.cs(1) : 'DllImport
+[01:24:02] Attribute' 형 식  또 는  네 임 스 페 이 스  이 름 을  찾 을  수  없 습 니 다 . using 지 시 문  또 는  어 셈 블  리  참 조 가  있 는 지  확 인 하 십 시 오 .
+[01:24:02] ____   ____ _______ _______ _      ______
+[01:24:02] |  _ \ / __ \__   __|__   __| |    |  ____|
+[01:24:02] | |_) | |  | | | |     | |  | |    | |__
+[01:24:02] |  _ <| |  | | | |     | |  | |    |  __|
+[01:24:02] | |_) | |__| | | |     | |  | |____| |____
+[01:24:02] |____/ \____/  |_|     |_|  |______|______|
+[01:24:02] ==========================================
+[01:24:02] System: CPU: 1.7% | RAM: 45.3% | Battery: 99% (Charging)
+[01:24:02] Commands: vstatus, vhelp, exit
+[01:24:02] ------------------------------------------
+[01:24:03] [User]>

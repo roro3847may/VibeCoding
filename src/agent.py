@@ -42,7 +42,11 @@ def main():
     os.chdir(vibe_path)
     
     # Powerful Screen Off
-    os.system("powershell -Command \"Add-Type -TypeDefinition '[DllImport(\\\"user32.dll\\\")] public class Monitor { [DllImport(\\\"user32.dll\\\")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam); public static void Off() { SendMessage(-1, 0x0112, 0xF170, 2); } }'; [Monitor]::Off()\"")
+    try:
+        # Using PowerShell to send the broadcast message for monitor off with correct C# syntax
+        os.system("powershell -Command \"Add-Type -TypeDefinition 'using System.Runtime.InteropServices; public class Monitor { [DllImport(\\\"user32.dll\\\")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam); public static void Off() { SendMessage(-1, 0x0112, 0xF170, 2); } }'; [Monitor]::Off()\"")
+    except:
+        pass
     
     cmd_path = os.path.join(vibe_path, "commands.txt")
     log_path = os.path.join(vibe_path, "agent_log.txt")
