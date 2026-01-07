@@ -5,7 +5,7 @@ import psutil
 import sys
 import threading
 
-# Ensure UTF-8 for Korean support
+# Ensure UTF-8 encoding for Korean support in Windows terminal
 if sys.platform == "win32":
     os.system("chcp 65001 > nul")
 
@@ -21,8 +21,12 @@ def get_system_summary():
         return "Status N/A"
 
 def monitor_logs(log_path, stop_event):
-    """Thread function to monitor agent_log.txt and print new lines instantly."""
-    last_log_pos = os.path.getsize(log_path) if os.path.exists(log_path) else 0
+    """Monitors agent_log.txt and prints new content immediately."""
+    if not os.path.exists(log_path):
+        with open(log_path, "w", encoding="utf-8") as f:
+            f.write("--- Log Initialized ---\n")
+            
+    last_log_pos = os.path.getsize(log_path)
     
     while not stop_event.is_set():
         if os.path.exists(log_path):
@@ -32,27 +36,27 @@ def monitor_logs(log_path, stop_event):
                     f.seek(last_log_pos)
                     new_content = f.read()
                     if new_content.strip():
-                        # Use a newline to clear space from the input prompt
-                        sys.stdout.write(f"\n[Agent]: {new_content.strip()}\n[User]> ")
+                        # Use stderr or direct write to avoid input line issues
+                        sys.stdout.write(f"\n[Bottle]: {new_content.strip()}\n[User]> ")
                         sys.stdout.flush()
                     last_log_pos = current_size
         time.sleep(0.5)
 
 def main():
+    # Force project directory
     vibe_path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding"
     os.chdir(vibe_path)
+    
+    # Try to turn off screen (Monitor Power Off)
+    # Using a robust PowerShell method
+    os.system("powershell -Command \"(Add-Type '[DllImport(\\\"user32.dll\\\")]public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -PassThru)::SendMessage(-1, 0x0112, 0xF170, 2)\"")
     
     cmd_path = os.path.join(vibe_path, "commands.txt")
     log_path = os.path.join(vibe_path, "agent_log.txt")
     
-    # Initialize log file if not exists
-    if not os.path.exists(log_path):
-        with open(log_path, "w", encoding="utf-8") as f:
-            f.write("--- Log Initialized ---\n")
-
     os.system('cls' if os.name == 'nt' else 'clear')
     print("==========================================")
-    print("      OPENCODE REMOTE AGENT INTERFACE")
+    print("      BOTTLE REMOTE AGENT INTERFACE")
     print("==========================================")
     print(f"System: {get_system_summary()}")
     print("Commands: vstatus, vhelp, exit")
@@ -64,6 +68,7 @@ def main():
 
     try:
         while True:
+            # Use a slightly more descriptive prompt
             prompt = input("[User]> ").strip()
             
             if not prompt: continue
@@ -75,24 +80,26 @@ def main():
                 print(f"[System Status] {get_system_summary()}")
                 continue
             elif prompt.lower() == 'vhelp':
-                print("\n--- Commands ---")
-                print("vstatus : Check laptop status")
-                print("vhelp   : Show this help")
-                print("exit    : Close session")
-                print("----------------")
+                print("\n--- Available Commands ---")
+                print("vstatus : Current laptop hardware status")
+                print("vhelp   : Show this manual")
+                print("exit    : Close this session")
+                print("--------------------------")
                 continue
             
-            # Write to commands.txt
+            # Log the command for Bottle to process
             with open(cmd_path, "a", encoding="utf-8") as f:
                 now = datetime.datetime.now().strftime("%H:%M:%S")
                 f.write(f"[{now}] {prompt}\n")
             
-            print(f" >> Request sent. Monitoring response...")
+            # Visual feedback on mobile
+            print(f" >> Request logged. Bottle is processing...")
 
     except KeyboardInterrupt:
         pass
     finally:
         stop_event.set()
+        print("\nSession ended.")
 
 if __name__ == "__main__":
     main()
