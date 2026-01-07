@@ -1,5 +1,2 @@
-[Agent]: User, I have checked your messages in commands.txt.
-1. vrun.bat has been removed as requested.
-2. The 'No Emoji' rule has been added to opencode_memory.txt and will be strictly followed.
-3. All updates have been pushed to GitHub.
-I am now ready for your next command.
+[Agent]: I am listening. I just read your messages in commands.txt. I will remove the 'Other' instruction and refine the interface now. Please check your mobile screen.
+[Agent]: Hello. I have upgraded the communication bridge. Now you should see this message on your mobile screen in real-time, even if you are not typing anything. No emojis will be used from now on.
