@@ -1,3 +1,5 @@
 [Agent]: I am listening. I just read your messages in commands.txt. I will remove the 'Other' instruction and refine the interface now. Please check your mobile screen.
 [Agent]: Hello. I have upgraded the communication bridge. Now you should see this message on your mobile screen in real-time, even if you are not typing anything. No emojis will be used from now on.
 [Agent]: Mobile check. Can you see this message now? I have just sent this to your terminal.
+[Agent]: I have just read your message about the real-time response. I am now monitoring your mobile inputs directly. I will reply to each of your requests as soon as I see them in the command file. Is this working for you now?
+[Agent]: I have checked your mobile messages. The reason you didn't see my replies is that I need to 'read' the command file to see your requests. Now that I have read them, I am responding. I will now stay in a monitoring loop as much as possible to catch your mobile messages faster. Can you see this reply on your phone now?
