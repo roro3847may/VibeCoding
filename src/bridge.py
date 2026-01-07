@@ -19,12 +19,10 @@ def main():
                 lines = f.readlines()
                 
             if len(lines) > last_count:
-                new_cmd = lines[-1].strip()
-                # Extremely simplified acknowledgment for Lolo
+                # Clean and acknowledgment only
                 with open(log_path, "w", encoding="utf-8") as f:
                     f.write("[Bottle]: k\n")
                 
-                print(f"NEW_COMMAND: {new_cmd}")
                 last_count = len(lines)
             
             time.sleep(1)
