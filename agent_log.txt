@@ -1,2 +1,3 @@
 [Agent]: I am listening. I just read your messages in commands.txt. I will remove the 'Other' instruction and refine the interface now. Please check your mobile screen.
 [Agent]: Hello. I have upgraded the communication bridge. Now you should see this message on your mobile screen in real-time, even if you are not typing anything. No emojis will be used from now on.
+[Agent]: Mobile check. Can you see this message now? I have just sent this to your terminal.
