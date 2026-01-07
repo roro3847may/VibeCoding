@@ -1,4 +1,7 @@
 @echo off
+setlocal
+cd /d %~dp0
+
 if "%1"=="status" (
     python dash.py
 ) else if "%1"=="run" (
@@ -13,3 +16,4 @@ if "%1"=="status" (
     echo Vibe Coding Utility
     echo Usage: vibe [status^|run^|chat^|sync]
 )
+endlocal
