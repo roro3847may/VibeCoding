@@ -1,1 +1,2 @@
-[Bottle]: Listening for roro's command...
+[Bottle]: k (Remote coding session established)
+[Bottle]: roro 님, 이제 침대에서 첫 번째 코딩 미션을 내려주세요!
