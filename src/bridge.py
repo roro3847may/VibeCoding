@@ -20,8 +20,11 @@ def main():
                 
             if len(lines) > last_count:
                 new_cmd = lines[-1].strip()
-                # Silently log received command to console only
-                print(f"NEW_COMMAND received: {new_cmd}")
+                # Simplified acknowledgment as requested by roro
+                with open(log_path, "a", encoding="utf-8") as f:
+                    f.write("\n[Bottle]: k\n")
+                
+                print(f"NEW_COMMAND: {new_cmd}")
                 last_count = len(lines)
             
             time.sleep(1)
