@@ -1,5 +1,1 @@
-[Agent]: I am listening. I just read your messages in commands.txt. I will remove the 'Other' instruction and refine the interface now. Please check your mobile screen.
-[Agent]: Hello. I have upgraded the communication bridge. Now you should see this message on your mobile screen in real-time, even if you are not typing anything. No emojis will be used from now on.
-[Agent]: Mobile check. Can you see this message now? I have just sent this to your terminal.
-[Agent]: I have just read your message about the real-time response. I am now monitoring your mobile inputs directly. I will reply to each of your requests as soon as I see them in the command file. Is this working for you now?
-[Agent]: I have checked your mobile messages. The reason you didn't see my replies is that I need to 'read' the command file to see your requests. Now that I have read them, I am responding. I will now stay in a monitoring loop as much as possible to catch your mobile messages faster. Can you see this reply on your phone now?
+[Agent]: 바틀님, 모바일에서 보내신 메시지들을 모두 확인했습니다. 실시간으로 답변이 보이지 않았던 이유는 제가 명령함을 확인하는 주기가 사용자님의 기대보다 늦었기 때문입니다. 이제 한글 인코딩 설정을 보완했고, 사용자님을 '바틀'님으로 부르겠습니다. 지금 핸드폰 화면에 이 메시지가 한글로 잘 보이시나요?
