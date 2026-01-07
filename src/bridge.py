@@ -20,9 +20,9 @@ def main():
                 
             if len(lines) > last_count:
                 new_cmd = lines[-1].strip()
-                # Simplified acknowledgment as requested by roro
-                with open(log_path, "a", encoding="utf-8") as f:
-                    f.write("\n[Bottle]: k\n")
+                # Extremely simplified acknowledgment for Lolo
+                with open(log_path, "w", encoding="utf-8") as f:
+                    f.write("[Bottle]: k\n")
                 
                 print(f"NEW_COMMAND: {new_cmd}")
                 last_count = len(lines)
