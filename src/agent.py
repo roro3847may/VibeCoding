@@ -36,7 +36,6 @@ def monitor_logs(log_path, stop_event):
                     f.seek(last_log_pos)
                     new_content = f.read()
                     if new_content.strip():
-                        # Use stderr or direct write to avoid input line issues
                         sys.stdout.write(f"\n[Bottle]: {new_content.strip()}\n[User]> ")
                         sys.stdout.flush()
                     last_log_pos = current_size
@@ -47,19 +46,25 @@ def main():
     vibe_path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding"
     os.chdir(vibe_path)
     
-    # Try to turn off screen (Monitor Power Off)
-    # Using a robust PowerShell method
-    os.system("powershell -Command \"(Add-Type '[DllImport(\\\"user32.dll\\\")]public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -PassThru)::SendMessage(-1, 0x0112, 0xF170, 2)\"")
+    # Improved Monitor Power Off command
+    try:
+        os.system("powershell -Command \"Add-Type -TypeDefinition '[DllImport(\\\"user32.dll\\\")] public static extern int PostMessage(int hWnd, int hMsg, int wParam, int lParam);'; [Win32Functions.Win32PostMessage]::PostMessage(0xffff, 0x0112, 0xf170, 2)\" > nul 2>&1")
+    except:
+        pass
     
     cmd_path = os.path.join(vibe_path, "commands.txt")
     log_path = os.path.join(vibe_path, "agent_log.txt")
     
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("==========================================")
-    print("      BOTTLE REMOTE AGENT INTERFACE")
-    print("==========================================")
-    print(f"System: {get_system_summary()}")
-    print("Commands: vstatus, vhelp, exit")
+    print("  ____   ____ _______ _______ _      ______ ")
+    print(" |  _ \\ / __ \\__   __|__   __| |    |  ____|")
+    print(" | |_) | |  | | | |     | |  | |    | |__   ")
+    print(" |  _ <| |  | | | |     | |  | |    |  __|  ")
+    print(" | |_) | |__| | | |     | |  | |____| |____ ")
+    print(" |____/ \\____/  |_|     |_|  |______|______|")
+    print(" ==========================================")
+    print(f" System: {get_system_summary()}")
+    print(" Commands: vstatus, vhelp, exit")
     print("-" * 42)
 
     stop_event = threading.Event()
@@ -68,7 +73,6 @@ def main():
 
     try:
         while True:
-            # Use a slightly more descriptive prompt
             prompt = input("[User]> ").strip()
             
             if not prompt: continue
@@ -87,12 +91,10 @@ def main():
                 print("--------------------------")
                 continue
             
-            # Log the command for Bottle to process
             with open(cmd_path, "a", encoding="utf-8") as f:
                 now = datetime.datetime.now().strftime("%H:%M:%S")
                 f.write(f"[{now}] {prompt}\n")
             
-            # Visual feedback on mobile
             print(f" >> Request logged. Bottle is processing...")
 
     except KeyboardInterrupt:

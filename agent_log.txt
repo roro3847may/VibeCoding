@@ -1,1 +1,1 @@
---- New Remote Session Ready ---
+[Bottle]: Lolo, I have addressed your feedback. 1. Added a cool ASCII title for BOTTLE. 2. Improved the screen-off command. 3. I will check your messages as fast as possible. Please try vchat again when you are ready to go back to bed.
