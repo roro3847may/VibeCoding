@@ -1,2 +1,2 @@
 @echo off
-python "C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding\src\agent.py"
+python C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding\src\agent.py
