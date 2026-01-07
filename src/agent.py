@@ -1,46 +1,60 @@
 import os
-import sys
 import time
-
-def agent_response(text):
-    print(f"\n[Opencode Thinking...]")
-    time.sleep(1) # Thinking effect
-    # This is a placeholder for actual LLM integration
-    if "상태" in text or "status" in text:
-        print("에이전트: 현재 시스템 상태는 양호합니다. 'vstatus'를 통해 상세 수치를 확인하실 수 있습니다.")
-    elif "안녕" in text or "hi" in text:
-        print("에이전트: 안녕하세요! 모바일에서 접속 중이시군요. 무엇을 도와드릴까요?")
-    elif "커밋" in text or "sync" in text:
-        print("에이전트: 'vsync' 명령어를 입력하시면 현재 변경사항을 깃허브에 바로 올릴 수 있습니다.")
-    else:
-        print(f"에이전트: '{text}'에 대한 요청을 확인했습니다. 현재는 브릿지 모드입니다.")
-        print("실제 자율 코딩을 시작하려면 API Key를 시스템 환경 변수에 등록해 주세요.")
+import datetime
 
 def main():
+    cmd_path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding\commands.txt"
+    log_path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding\agent_log.txt"
+    
+    # Ensure files exist
+    if not os.path.exists(log_path):
+        with open(log_path, "w", encoding="utf-8") as f:
+            f.write("=== Agent Log Started ===\n")
+
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("="*50)
-    print("      🤖 OPENCODE AI AGENT : VIBE EDITION")
-    print("="*50)
-    print(" (Type 'exit' or '종료' to quit)")
-    
-    # Check for API Key (For future usage)
-    has_api = os.getenv("OPENAI_API_KEY") or os.getenv("ANTHROPIC_API_KEY")
-    if not has_api:
-        print("\n⚠️  Notice: Brain (API Key) not connected.")
-        print("   Set OPENAI_API_KEY to unlock full autonomous power.")
-    
+    print("==========================================")
+    print("      🤖 OPENCODE REAL-TIME CONSOLE")
+    print("==========================================")
+    print(" * Type your request to the Agent.")
+    print(" * Type 'exit' to quit.")
+    print("-" * 42)
+
+    last_log_pos = os.path.getsize(log_path)
+
     while True:
         try:
-            prompt = input("\n[User @ Mobile]> ")
-            if prompt.lower() in ['exit', 'quit', '종료', '나가기']:
-                print("\n에이전트: 접속을 종료합니다. 다음에 봬요!")
+            # Check for new logs from Agent
+            current_size = os.path.getsize(log_path)
+            if current_size > last_log_pos:
+                with open(log_path, "r", encoding="utf-8") as f:
+                    f.seek(last_log_pos)
+                    new_logs = f.read()
+                    if new_logs.strip():
+                        print(f"\n[Agent]: {new_logs.strip()}")
+                    last_log_pos = current_size
+
+            # Get user input
+            user_input = input("\nRequest > ")
+            if user_input.lower() in ['exit', 'quit']:
                 break
             
-            if not prompt.strip():
+            if not user_input.strip():
                 continue
             
-            agent_response(prompt)
+            # Send command
+            with open(cmd_path, "a", encoding="utf-8") as f:
+                now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                f.write(f"[{now}] {user_input}\n")
             
+            print(" >> Sending request... [OK]")
+            print(" >> Waiting for Agent response...", end="", flush=True)
+            
+            # Simple progress animation
+            for _ in range(5):
+                print(".", end="", flush=True)
+                time.sleep(0.3)
+            print(" [Logged]")
+
         except KeyboardInterrupt:
             break
 
