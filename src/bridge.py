@@ -20,13 +20,8 @@ def main():
                 
             if len(lines) > last_count:
                 new_cmd = lines[-1].strip()
-                now = datetime.datetime.now().strftime("%H:%M:%S")
-                
-                # Log to agent_log to notify Lolo's mobile
-                with open(log_path, "a", encoding="utf-8") as f:
-                    f.write(f"\n[System]: Command received at {now}: {new_cmd}\n")
-                
-                print(f"NEW_COMMAND: {new_cmd}")
+                # Silently log received command to console only
+                print(f"NEW_COMMAND received: {new_cmd}")
                 last_count = len(lines)
             
             time.sleep(1)

@@ -41,10 +41,11 @@ def main():
     vibe_path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding"
     os.chdir(vibe_path)
     
-    # Powerful Screen Off
+    # Final robust screen off command for Windows
     try:
-        # Using PowerShell to send the broadcast message for monitor off with correct C# syntax
-        os.system("powershell -Command \"Add-Type -TypeDefinition 'using System.Runtime.InteropServices; public class Monitor { [DllImport(\\\"user32.dll\\\")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam); public static void Off() { SendMessage(-1, 0x0112, 0xF170, 2); } }'; [Monitor]::Off()\"")
+        # Using a reliable one-liner for PowerShell to turn off monitor
+        cmd = "powershell -Command \"Add-Type -TypeDefinition 'using System; using System.Runtime.InteropServices; public class Monitor { [DllImport(\\\"user32.dll\\\")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam); public static void Off() { SendMessage(-1, 0x0112, 0xF170, 2); } }'; [Monitor]::Off()\""
+        os.system(cmd)
     except:
         pass
     
