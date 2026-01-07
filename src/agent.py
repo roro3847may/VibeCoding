@@ -5,7 +5,6 @@ import psutil
 import sys
 import threading
 
-# Ensure UTF-8 encoding for Korean support in Windows terminal
 if sys.platform == "win32":
     os.system("chcp 65001 > nul")
 
@@ -21,13 +20,10 @@ def get_system_summary():
         return "Status N/A"
 
 def monitor_logs(log_path, stop_event):
-    """Monitors agent_log.txt and prints new content immediately."""
     if not os.path.exists(log_path):
         with open(log_path, "w", encoding="utf-8") as f:
             f.write("--- Log Initialized ---\n")
-            
     last_log_pos = os.path.getsize(log_path)
-    
     while not stop_event.is_set():
         if os.path.exists(log_path):
             current_size = os.path.getsize(log_path)
@@ -42,15 +38,11 @@ def monitor_logs(log_path, stop_event):
         time.sleep(0.5)
 
 def main():
-    # Force project directory
     vibe_path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding"
     os.chdir(vibe_path)
     
-    # Improved Monitor Power Off command
-    try:
-        os.system("powershell -Command \"Add-Type -TypeDefinition '[DllImport(\\\"user32.dll\\\")] public static extern int PostMessage(int hWnd, int hMsg, int wParam, int lParam);'; [Win32Functions.Win32PostMessage]::PostMessage(0xffff, 0x0112, 0xf170, 2)\" > nul 2>&1")
-    except:
-        pass
+    # Powerful Screen Off
+    os.system("powershell -Command \"Add-Type -TypeDefinition '[DllImport(\\\"user32.dll\\\")] public class Monitor { [DllImport(\\\"user32.dll\\\")] public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam); public static void Off() { SendMessage(-1, 0x0112, 0xF170, 2); } }'; [Monitor]::Off()\"")
     
     cmd_path = os.path.join(vibe_path, "commands.txt")
     log_path = os.path.join(vibe_path, "agent_log.txt")
@@ -74,9 +66,7 @@ def main():
     try:
         while True:
             prompt = input("[User]> ").strip()
-            
             if not prompt: continue
-            
             if prompt.lower() == 'exit':
                 stop_event.set()
                 break
@@ -84,24 +74,22 @@ def main():
                 print(f"[System Status] {get_system_summary()}")
                 continue
             elif prompt.lower() == 'vhelp':
-                print("\n--- Available Commands ---")
-                print("vstatus : Current laptop hardware status")
-                print("vhelp   : Show this manual")
-                print("exit    : Close this session")
-                print("--------------------------")
+                print("\n--- Commands ---")
+                print("vstatus : Laptop resource status")
+                print("vhelp   : Show this help")
+                print("exit    : Close session")
+                print("----------------")
                 continue
             
             with open(cmd_path, "a", encoding="utf-8") as f:
                 now = datetime.datetime.now().strftime("%H:%M:%S")
                 f.write(f"[{now}] {prompt}\n")
             
-            print(f" >> Request logged. Bottle is processing...")
-
+            print(f" >> Request logged. Bottle is working...")
     except KeyboardInterrupt:
         pass
     finally:
         stop_event.set()
-        print("\nSession ended.")
 
 if __name__ == "__main__":
     main()
