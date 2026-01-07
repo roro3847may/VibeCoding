@@ -1,2 +1,2 @@
 @echo off
-vibe status
+python "C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding\dash.py"
