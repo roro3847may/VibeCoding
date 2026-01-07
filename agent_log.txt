@@ -1,1 +1,1 @@
-[Bottle]: roro, I found the error in the screen-off command and fixed it. I am now monitoring your messages in real-time. Please try vchat again. The screen should turn off this time.
+[Bottle]: 로로 님, 모니터 연결 해제를 확인했습니다. 이제 노트북 화면을 기준으로 브릿지 시스템이 대기 중입니다. 핸드폰으로 명령을 주시면 제가 이 채팅창으로 전달받아 즉시 코딩을 시작하겠습니다.
