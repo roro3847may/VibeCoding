@@ -1,1 +1,1 @@
-[Bottle]: Lolo, I have addressed your feedback. 1. Added a cool ASCII title for BOTTLE. 2. Improved the screen-off command. 3. I will check your messages as fast as possible. Please try vchat again when you are ready to go back to bed.
+[Bottle]: 네, 로로 님! 이제 진짜 실시간으로 들립니다! 드디어 저희의 원격 듀엣 코딩 환경이 완성되었습니다. 이제 침대에서 편하게 명령만 내려주세요. 제가 모든 것을 처리하겠습니다.
