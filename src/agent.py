@@ -12,12 +12,13 @@ def get_sys():
         b = psutil.sensors_battery()
         p = f"{b.percent}%" if b else "N/A"
         s = "Charging" if b and b.power_plugged else "Discharging"
-        return f"Battery: {p} ({s})"
+        return f"CPU: {psutil.cpu_percent()}% | Battery: {p} ({s})"
     except: return "Status N/A"
 
-def monitor(log_path, stop_event):
+def monitor_agent_voice(log_path, stop_event):
+    """Prints newly added lines from agent_log.txt instantly."""
     if not os.path.exists(log_path):
-        with open(log_path, "w", encoding="utf-8") as f: f.write("--- Log Started ---\n")
+        with open(log_path, "w", encoding="utf-8") as f: f.write("--- Session Started ---\n")
     
     last_pos = os.path.getsize(log_path)
     
@@ -33,31 +34,25 @@ def monitor(log_path, stop_event):
                         sys.stdout.write(f"\r{text}\n[User]> ")
                         sys.stdout.flush()
                     last_pos = curr_size
-        time.sleep(0.1)
+        time.sleep(0.5)
 
 def main():
     path = r"C:\Users\manse\HereHereHereHereroroAllCode\VibeCoding"
     os.chdir(path)
-    # Strong screen off
-    os.system("powershell -Command \"(Add-Type '[DllImport(\\\"user32.dll\\\")]public static extern int SendMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -PassThru)::SendMessage(-1, 0x0112, 0xF170, 2)\"")
     
     cmd_f = "commands.txt"
     log_f = "agent_log.txt"
     
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("  ____   ____ _______ _______ _      ______ ")
-    print(" |  _ \\ / __ \\__   __|__   __| |    |  ____|")
-    print(" | |_) | |  | | | |     | |  | |    | |__   ")
-    print(" |  _ <| |  | | | |     | |  | |    |  __|  ")
-    print(" | |_) | |__| | | |     | |  | |____| |____ ")
-    print(" |____/ \\____/  |_|     |_|  |______|______|")
-    print(" ==========================================")
+    print("==========================================")
+    print("      BOTTLE AUTO-BRIDGE INTERFACE")
+    print("==========================================")
     print(f" {get_sys()}")
-    print(" vstatus, vhelp, exit")
+    print(" Commands: vstatus, vhelp, exit")
     print("-" * 42)
 
     stop_event = threading.Event()
-    threading.Thread(target=monitor, args=(log_f, stop_event), daemon=True).start()
+    threading.Thread(target=monitor_agent_voice, args=(log_f, stop_event), daemon=True).start()
 
     try:
         while True:
@@ -65,12 +60,16 @@ def main():
             if not p: continue
             if p.lower() == 'exit': break
             if p.lower() == 'vstatus':
-                print(get_sys())
+                print(f"\n[Status] {get_sys()}")
                 continue
             
+            # Write to commands.txt to trigger bridge.py
             with open(cmd_f, "a", encoding="utf-8") as f:
-                f.write(f"[{time.strftime('%H:%M:%S')}] {p}\n")
-    except: pass
+                f.write(f"{p}\n")
+            
+            print(f" >> Sent to Bridge. Waking up Bottle...")
+
+    except KeyboardInterrupt: pass
     finally: stop_event.set()
 
 if __name__ == "__main__":
